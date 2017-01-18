@@ -1,0 +1,48 @@
+@font-face {
+	font-family: "Noto";
+	src: url(../fonts/NotoSans-Regular.ttf);
+}
+body {
+	font-family: "Noto";
+}
+
+.page-header h1 {
+	text-align: center;
+}
+
+.page-header h1 span.glyphicon {
+	transform: rotate(-25deg);
+	margin-right: 10px;
+}
+
+#search-query {
+	width: calc(100% - 30px);
+	background: none;
+	border: none;
+	font-size: 20px;
+	float: left;
+}
+
+#search-section span.glyphicon {
+	width: 25px;
+	margin-right: 5px;
+	padding: 5px;
+	font-size: 20px;
+	float: left;
+	display: block;
+}
+
+#search-section:after {
+	content: "";
+	width: 0px;
+	height: 0px;
+	display: block;
+	clear: both;
+}
+
+.search-result-text {
+	display: block;
+	font-size: 18px;
+	margin-top: 30px;
+	text-align: center;
+}
