@@ -42,7 +42,7 @@ body {
 
 .search-result-text {
 	display: block;
-	font-size: 18px;
-	margin-top: 30px;
+	font-size: 20px;
+	margin: 30px 0px;
 	text-align: center;
 }

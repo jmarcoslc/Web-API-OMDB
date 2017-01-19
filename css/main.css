@@ -1,0 +1,28 @@
+.film {
+	height: 475px;
+	padding: 10px;
+}
+
+.film-poster {
+	display: block;
+	width: 250px;
+	height: 350px;
+	background-position: center center;
+	background-size: cover;
+	background-image: url("../img/nocoverart.jpg");
+	border-radius: 5px;
+	margin: auto auto;
+}
+
+.film-title {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+}
+
+.film-year {
+	display: block;
+	text-align: center;
+	font-style: italic;
+	margin-top: 7px
+}
