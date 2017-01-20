@@ -1,6 +1,8 @@
 var page = 1;
 var last_filter = "";
 var next_page = true;
+var total_results = null;
+var imgs_inserted = 0;
 
 function addListeners() {
 	$("#search-query").keyup(checkInput);
@@ -11,6 +13,7 @@ function checkInput(event_data){
 	if (event_data.keyCode == 13) {
 		clearFilms();
 		page = 1;
+		imgs_inserted = 0;
 		last_filter = $("#search-query").val();
 		getFilms(last_filter, page);
 	}
@@ -23,6 +26,7 @@ function getFilms(filter=last_filter, page=page) {
 			insertError(data);
 		} else {
 			$(".search-result-text").css("display", "block");
+			total_results = parseInt(data.totalResults);
 			$.each(data["Search"], function(index, film) {
 				insertFilm(film.Title, film.Poster, film.Year);
 			});
@@ -31,7 +35,7 @@ function getFilms(filter=last_filter, page=page) {
 }
 
 function checkScroll() {
-	if($(document).innerHeight() - $(document).scrollTop() <= $(window).height() + 20 && next_page) {
+	if($(document).innerHeight() - $(document).scrollTop() <= $(window).height() + 20 && next_page && imgs_inserted < total_results) {
         console.log(page);
         next_page = false;
         page++;
@@ -60,6 +64,8 @@ function insertFilm(title, img, year) {
 		opacity: 1,
 		top: 0
 	}, 800);
+
+	imgs_inserted += 1;
 }
 
 function insertError(data) {
