@@ -1,9 +1,10 @@
 var page = 1;
 var last_filter = "";
+var next_page = true;
 
 function addListeners() {
 	$("#search-query").keyup(checkInput);
-	$(document).scroll(checkScroll);
+	$(document).scroll(checkScroll);24
 }
 
 function checkInput(event_data){
@@ -16,10 +17,12 @@ function checkInput(event_data){
 }
 
 function getFilms(filter=last_filter, page=page) {
-	$.getJSON("http://www.omdbapi.com/?s="+filter+"&page="+page, function(data){
+	$.getJSON("https://www.omdbapi.com/?s="+filter+"&page="+page, function(data){
+		next_page = true;
 		if (data.Response == "False") {
 			insertError(data);
 		} else {
+			$(".search-result-text").css("display", "block");
 			$.each(data["Search"], function(index, film) {
 				insertFilm(film.Title, film.Poster, film.Year);
 			});
@@ -28,8 +31,9 @@ function getFilms(filter=last_filter, page=page) {
 }
 
 function checkScroll() {
-	if($(document).innerHeight() - $(document).scrollTop() <= $(window).height()) {
+	if($(document).innerHeight() - $(document).scrollTop() <= $(window).height() + 20 && next_page) {
         console.log(page);
+        next_page = false;
         page++;
         getFilms(last_filter, page);
     }
@@ -51,10 +55,16 @@ function insertFilm(title, img, year) {
 		<span class='film-title'>"+title+"</span>\
 		<span class='film-year'><small>"+year+"</small></span>\
 		</div>");
+
+	$("#search-result .film:last").animate({
+		opacity: 1,
+		top: 0
+	}, 800);
 }
 
 function insertError(data) {
-
+	$(".search-result-text").css("display", "none");
+	$("#search-result").append("<h1 class='error'>"+data.Error+"</h1>");
 }
 
 $(document).ready(function(){

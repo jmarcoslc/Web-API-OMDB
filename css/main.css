@@ -1,6 +1,17 @@
+.search-result-text {
+	display: block;
+	font-size: 20px;
+	margin: 30px 0px;
+	text-align: center;
+	display: none;
+}
+
 .film {
 	height: 475px;
 	padding: 10px;
+	position: relative;
+	top: 20px;
+	opacity: 0;
 }
 
 .film-poster {
@@ -12,12 +23,22 @@
 	background-image: url("../img/nocoverart.jpg");
 	border-radius: 5px;
 	margin: auto auto;
+	-moz-transition: box-shadow .15s linear;
+	-webkit-transition: box-shadow .15s linear;
+	-o-transition: box-shadow .15s linear;
+	-ms-transition: box-shadow .15s linear;
+	transition: box-shadow .15s linear;
+}
+
+.film-poster:hover {
+	box-shadow: 0px 0px 5px 5px #DDD;
 }
 
 .film-title {
 	display: block;
 	text-align: center;
 	font-size: 16px;
+	margin-top: 10px;
 }
 
 .film-year {
@@ -25,4 +46,9 @@
 	text-align: center;
 	font-style: italic;
 	margin-top: 7px
+}
+
+h1.error {
+	text-align: center;
+	margin-top: 100px;
 }
