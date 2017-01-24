@@ -28,7 +28,7 @@ function getFilms(filter=last_filter, page=page) {
 			$(".search-result-text").css("display", "block");
 			total_results = parseInt(data.totalResults);
 			$.each(data["Search"], function(index, film) {
-				insertFilm(film.Title, film.Poster, film.Year);
+				insertFilm(film.Title, film.Poster, film.Year, film.imdbID);
 			});
 		}
 	});
@@ -49,13 +49,13 @@ function clearFilms() {
 	}
 }
 
-function insertFilm(title, img, year) {
+function insertFilm(title, img, year, imdb) {
 	if (img == "N/A") {
 		img = "img/nocoverart.jpg";
 	}
 
 	$("#search-result").append("<div class='col-lg-3 col-md-4 col-sm-6 col-xs-12 film'>\
-		<span class='film-poster' style='background-image: url("+img+");'></span>\
+		<a href='http://www.imdb.com/title/"+imdb+"' target='_blank'><span class='film-poster' style='background-image: url("+img+");'></span></a>\
 		<span class='film-title'>"+title+"</span>\
 		<span class='film-year'><small>"+year+"</small></span>\
 		</div>");
