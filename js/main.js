@@ -6,7 +6,7 @@ var imgs_inserted = 0;
 
 function addListeners() {
 	$("#search-query").keyup(checkInput);
-	$(document).scroll(checkScroll);24
+	$(document).scroll(checkScroll);
 }
 
 function checkInput(event_data){
